@@ -1,0 +1,167 @@
+# ============================================================
+# ZhioStudio — Decap CMS configuration
+# The admin panel lives at /admin once the site is deployed.
+#
+# BEFORE GO-LIVE, CONFIRM:
+#   * backend.repo below matches the real GitHub repository
+#     (placeholder: dastseri/zhiostudio-site, branch: main)
+#   * A GitHub OAuth path exists. Decap's GitHub backend needs
+#     an OAuth gateway — pick ONE at deploy time:
+#       a) Netlify Identity / Git Gateway: host this /admin on
+#          Netlify (the site itself can stay on Render), enable
+#          Identity + Git Gateway, then switch the backend to:
+#            backend: { name: git-gateway, branch: main }
+#       b) A self-hosted OAuth proxy (e.g. decap-oauth) and set
+#          base_url + auth_endpoint under the github backend.
+#     Until then the panel loads but sign-in cannot complete.
+#
+# All site content lives in ONE file: data/content.json.
+# The public site renders entirely from it — edits here are
+# committed to GitHub and Render auto-deploys them.
+# ============================================================
+
+backend:
+  name: github
+  repo: dastseri/zhiostudio-site # CONFIRM at deploy time
+  branch: main # CONFIRM at deploy time
+  # base_url: https://your-oauth-proxy.example.com   # needed for the github backend
+  # auth_endpoint: auth                               # needed for the github backend
+
+publish_mode: simple
+
+# Uploads go into the site assets so the static build serves them.
+# In the media library, choose img/ for images and video/ for films.
+media_folder: "assets"
+public_folder: "assets"
+
+site_url: https://zhiostudio.nexais.ca
+display_url: https://zhiostudio.nexais.ca
+logo_url: ../assets/img/logo.jpg
+
+collections:
+  - name: "content"
+    label: "Site Content"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "content"
+        label: "All Site Content (content.json)"
+        file: "data/content.json"
+        fields:
+          # ---------- Site settings ----------
+          - label: "Site Settings"
+            name: "settings"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Brand name", name: "brandName", widget: "string" }
+              - { label: "Brand suffix", name: "brandSuffix", widget: "string" }
+              - { label: "Tagline", name: "tagline", widget: "string" }
+              - { label: "City line", name: "city", widget: "string" }
+              - { label: "Logo path", name: "logo", widget: "string", hint: "Path inside the site, e.g. assets/img/logo.jpg" }
+              - label: "Colors"
+                name: "colors"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Accent (gold)", name: "accent", widget: "string" }
+                  - { label: "Accent soft", name: "accentSoft", widget: "string" }
+                  - { label: "Background", name: "bg", widget: "string" }
+                  - { label: "Panel", name: "panel", widget: "string" }
+                  - { label: "Text", name: "ink", widget: "string" }
+                  - { label: "Muted text", name: "muted", widget: "string" }
+
+          # ---------- Hero ----------
+          - label: "Hero (3D showroom heading)"
+            name: "hero"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Headline", name: "headline", widget: "string" }
+              - { label: "Subline", name: "subline", widget: "text" }
+              - { label: "Primary button", name: "primaryCta", widget: "string" }
+              - { label: "Secondary button", name: "secondaryCta", widget: "string" }
+              - { label: "Showroom hint", name: "hint", widget: "string" }
+
+          # ---------- Samples ----------
+          - label: "Showroom Samples"
+            name: "samples"
+            widget: "list"
+            collapsed: true
+            summary: "{{fields.title}} — {{fields.category}}"
+            fields:
+              - { label: "ID (do not change)", name: "id", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Category", name: "category", widget: "string" }
+              - { label: "Blurb — what the film demonstrates", name: "blurb", widget: "text" }
+              - { label: "Video file", name: "video", widget: "string", hint: "e.g. assets/video/tiger-boba.mp4 — upload via Media, into the video folder" }
+              - { label: "Poster image", name: "poster", widget: "image", media_folder: "/assets/img", public_folder: "/assets/img", choose_url: false }
+              - { label: "Price-anchor line", name: "anchorText", widget: "string" }
+              - label: "“Select” adds this package"
+                name: "anchorPackage"
+                widget: "select"
+                options: ["single-video", "menu-set-3", "full-menu-12", "monthly-videos", "ig-management", "bundle", "website", "website-ordering", "website-cinematic", "maintenance"]
+
+          # ---------- Packages ----------
+          - label: "Packages & Pricing"
+            name: "packages"
+            widget: "list"
+            collapsed: true
+            summary: "{{fields.name}} — ${{fields.price}}/{{fields.period}}"
+            fields:
+              - { label: "ID (do not change)", name: "id", widget: "string" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Group", name: "group", widget: "select", options: ["Films", "Monthly", "Websites"] }
+              - { label: "Price (CAD)", name: "price", widget: "number", value_type: "int", min: 0 }
+              - { label: "Price note", name: "priceNote", widget: "string", required: false, hint: "e.g. 'from' — leave empty for exact prices" }
+              - { label: "Period", name: "period", widget: "select", options: [{ label: "One-time", value: "once" }, { label: "Per month", value: "mo" }] }
+              - { label: "Featured card", name: "featured", widget: "boolean", required: false }
+              - { label: "Short blurb", name: "blurb", widget: "text" }
+              - { label: "Features (one per line)", name: "features", widget: "list" }
+
+          # ---------- Services ----------
+          - label: "Services"
+            name: "services"
+            widget: "list"
+            collapsed: true
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+
+          # ---------- About ----------
+          - label: "About"
+            name: "about"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+
+          # ---------- Family brands ----------
+          - label: "Family Brands"
+            name: "family"
+            widget: "list"
+            collapsed: true
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Description", name: "text", widget: "text" }
+              - { label: "Link", name: "url", widget: "string" }
+
+          # ---------- Contact ----------
+          - label: "Contact & Socials"
+            name: "contact"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Instagram URL", name: "instagram", widget: "string" }
+              - { label: "TikTok URL", name: "tiktok", widget: "string" }
+
+          # ---------- Terms ----------
+          - { label: "Terms / fine print", name: "terms", widget: "text" }
