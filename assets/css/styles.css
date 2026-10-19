@@ -161,6 +161,7 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;line-height:1.15}
 .scrim{position:fixed;inset:0;background:rgba(4,4,6,.6);z-index:75;backdrop-filter:blur(2px)}
 
 /* ---------- Modal ---------- */
+.modal[hidden]{display:none}
 .modal{position:fixed;inset:0;z-index:90;display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;background:rgba(4,4,6,.72);padding:2.2rem 1rem}
 .modal-card{position:relative;background:#16161d;border:1px solid var(--line);border-radius:20px;max-width:520px;width:100%;padding:2rem 2rem 1.7rem;box-shadow:0 40px 100px rgba(0,0,0,.6)}
 .modal-card h3{font-size:1.65rem;margin-bottom:.4rem}
