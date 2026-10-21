@@ -351,7 +351,7 @@
         var g = $("#fallback-grid");
         g.hidden = false;
         g.querySelector(".fallback-head p").textContent =
-          "The showroom could not load its content file. Please serve this site over HTTP (for example: python3 -m http.server) — or email zhiostudio@gmail.com and we will help right away.";
+          "The showroom could not load its content file. Please serve this site over HTTP (for example: python3 -m http.server) — or email zhiostutio@gmail.com and we will help right away.";
         $("#gl-wrap").style.display = "none";
         $(".hero-copy").style.display = "none";
       });
