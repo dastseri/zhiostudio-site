@@ -156,6 +156,7 @@
     function ensureVideo(i) {
       if (state.videos[i]) return state.videos[i];
       var sm = data.samples[i];
+      if (!sm.video) return null;
       var v = document.createElement("video");
       v.src = sm.video; v.loop = true; v.muted = true; v.playsInline = true;
       v.setAttribute("playsinline", ""); v.preload = "auto"; v.crossOrigin = "anonymous";
@@ -190,8 +191,10 @@
         if (j !== i) { fr.mat.transparent = true; fr.mat.opacity = 0.5; fr.mat.needsUpdate = true; }
       });
       var v = ensureVideo(i);
-      f.mat.map = state.videos[i + "_tex"]; f.mat.opacity = 1; f.mat.transparent = false; f.mat.needsUpdate = true;
-      var p = v.play(); if (p && p.catch) p.catch(function () {});
+      if (v) {
+        f.mat.map = state.videos[i + "_tex"]; f.mat.opacity = 1; f.mat.transparent = false; f.mat.needsUpdate = true;
+        var p = v.play(); if (p && p.catch) p.catch(function () {});
+      }
       ZS.openSample(data.samples[i]);
       state.lastInteract = performance.now();
     }

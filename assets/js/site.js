@@ -138,6 +138,10 @@
     $("#panel-title").textContent = sample.title;
     $("#panel-blurb").textContent = sample.blurb;
     $("#panel-anchor-text").textContent = sample.anchorText;
+    $("#panel-sets").textContent = sample.priceAnchor || "Or build a set: 3 films — $597 · Full menu of 12 — $1,797";
+    var demoBtn = $("#panel-demo");
+    if (sample.link) { demoBtn.hidden = false; demoBtn.href = sample.link; }
+    else { demoBtn.hidden = true; demoBtn.removeAttribute("href"); }
     var sel = $("#panel-select");
     sel.textContent = pkg ? ("Select — " + pkg.name + " · " + money(pkg.price) + (pkg.period === "mo" ? "/mo" : "")) : "Select this package";
     sel.onclick = function () {
@@ -147,13 +151,17 @@
     };
     var media = $("#panel-media"), vid = $("#panel-video"), soundBtn = $("#panel-sound");
     if (ZS.mode === "flat") {
-      media.hidden = false;
-      vid.poster = sample.poster; vid.src = sample.video;
-      vid.muted = false; vid.play().catch(function () {});
+      if (sample.video) {
+        media.hidden = false;
+        vid.poster = sample.poster; vid.src = sample.video;
+        vid.muted = false; vid.play().catch(function () {});
+      } else {
+        media.hidden = true; vid.removeAttribute("src"); vid.load();
+      }
       soundBtn.hidden = true;
     } else {
       media.hidden = true; vid.removeAttribute("src"); vid.load();
-      soundBtn.hidden = false;
+      soundBtn.hidden = !sample.video;
       soundBtn.textContent = "Sound: off";
       soundBtn.onclick = function () {
         if (window.ZSShowroom) {
