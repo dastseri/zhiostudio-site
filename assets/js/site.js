@@ -123,6 +123,17 @@
     $("#tray-totals").innerHTML = rows;
     $("#checkout-open").disabled = !ZS.tray.size;
     $("#checkout-open").style.opacity = ZS.tray.size ? "1" : ".5";
+    var payBtn = $("#tray-pay"), single = null;
+    if (ZS.tray.size === 1) {
+      ZS.tray.forEach(function (q, id) { if (q === 1) single = ZS.pkgs[id]; });
+    }
+    if (payBtn) {
+      if (single && single.payUrl) {
+        payBtn.hidden = false;
+        payBtn.href = single.payUrl;
+        payBtn.textContent = "Pay online with Stripe — " + single.name;
+      } else { payBtn.hidden = true; }
+    }
   }
 
   function openTray() { $("#tray").classList.add("open"); $("#scrim").hidden = false; }
@@ -247,7 +258,9 @@
             '<p class="price">' + priceHTML(p) + '</p>' +
             '<p class="blurb">' + esc(p.blurb) + '</p>' +
             '<ul>' + p.features.map(function (f) { return "<li>" + esc(f) + "</li>"; }).join("") + '</ul>' +
-            '<button class="btn ' + (p.featured ? "btn-gold" : "btn-ghost") + '" type="button" data-add="' + p.id + '">Add to order</button></article>';
+            '<div class="card-actions">' +
+            (p.payUrl ? '<a class="btn btn-gold" href="' + esc(p.payUrl) + '" target="_blank" rel="noopener">Buy now — pay online</a>' : "") +
+            '<button class="btn btn-ghost" type="button" data-add="' + p.id + '">Add to order tray</button></div></article>';
         }).join("") + "</div></div>";
     }).join("");
     $("#terms").textContent = d.terms;

@@ -118,6 +118,7 @@ collections:
               - { label: "Price note", name: "priceNote", widget: "string", required: false, hint: "e.g. 'from' — leave empty for exact prices" }
               - { label: "Period", name: "period", widget: "select", options: [{ label: "One-time", value: "once" }, { label: "Per month", value: "mo" }] }
               - { label: "Featured card", name: "featured", widget: "boolean", required: false }
+              - { label: "Stripe payment link (Buy button URL)", name: "payUrl", widget: "string", required: false }
               - { label: "Short blurb", name: "blurb", widget: "text" }
               - { label: "Features (one per line)", name: "features", widget: "list" }
 

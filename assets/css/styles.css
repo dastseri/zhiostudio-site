@@ -114,6 +114,9 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;line-height:1.15}
 .price-card li{font-size:.9rem;color:#ddd6c6;padding-left:1.25rem;position:relative}
 .price-card li::before{content:"";position:absolute;left:0;top:.52em;width:.5rem;height:.5rem;border-radius:50%;background:var(--gold);opacity:.8}
 .price-card .btn{margin-top:auto}
+.card-actions{margin-top:auto;display:flex;flex-direction:column;gap:.6rem}
+.card-actions .btn{margin-top:0}
+#tray-pay{margin-top:.6rem}
 .terms{color:var(--muted);font-size:.88rem;border-top:1px solid rgba(198,161,91,.15);padding-top:1.2rem;max-width:900px}
 
 /* Contact */
