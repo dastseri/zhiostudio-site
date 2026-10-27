@@ -182,7 +182,7 @@
   if(!panel || !bubble) return;
 
   var ANSWERS = {
-    topics:"Vaishali's signature keynotes are: “From Adversity to Adventure” — agile, energized mindsets in times of change; “Our Full Mind” — the human education the future of work demands; and “The Bold Wake-Up Call” — self-leadership for women in a changing world. She also emcees and facilitates events. Would you like me to help you book one?",
+    topics:"Vaishali's signature keynotes are: “From Adversity to Adventure” — building agile, energized mindsets in times of change; “Our Full Mind” — the human education needed for the future; and “Reclaiming the Mind Behind the Wheel” — a 20–30 minute journey into self-leadership. She also offers interactive workshops, panels, and emcee & facilitation for events. Would you like me to help you book one?",
     ora:"ORA℠ is Vaishali's proprietary method — three mindset levers: Observe (identify the triggers behind stress, distraction and disconnection), Release (let go of negativity and anxiety before they lead), and Activate (channel your energy to the right intelligences at the right time). Her ORA Experience℠ is a personalized 6-week journey built on it.",
     book:"You can book Vaishali through her booking page — the “Book Vaishali to Speak” button at the top of this page. To reply well, her team will want your event date, organization, audience size and the talk you're considering. I can capture those details on her booking line, 24/7, so nothing is missed.",
     price:"Speaking fees depend on the date, the format and the audience — Vaishali's team replies with the right figure once they have your event details. The kindest next step is the booking page, or a free consultation through her contact page.",

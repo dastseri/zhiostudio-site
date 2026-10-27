@@ -371,6 +371,107 @@ blockquote cite{display:block;margin-top:12px;font-size:14.5px;font-style:normal
 .ava-inputrow .btn{padding:.5rem 1.1rem;min-height:46px}
 .ava-demo-note{font-size:.75rem;color:var(--muted);text-align:center;padding:.55rem;background:#fff;border-top:1px solid var(--line)}
 
+/* ================= Multi-page rebuild — deep content ================= */
+
+/* nav: more pages + active state */
+.main-nav{gap:20px;flex-wrap:wrap}
+.main-nav a.active{color:var(--brand);box-shadow:inset 0 -2px 0 var(--brand)}
+.brand span{color:var(--brand)}
+
+/* subpage hero */
+.page-hero{
+  max-width:1320px;margin:0 auto;
+  padding:clamp(44px,6vw,76px) clamp(20px,5vw,64px) clamp(8px,2vw,20px);
+}
+.page-hero h1{font-size:clamp(36px,4vw,54px);margin-bottom:16px;max-width:16em}
+.page-hero .lede{color:var(--muted);font-size:19.5px;max-width:44em}
+.page-hero .hero-ctas{margin-top:28px}
+
+/* long-form prose */
+.prose{max-width:56em}
+.prose p{margin-bottom:16px;font-size:17.5px;color:#31423B}
+.prose p strong{color:var(--ink)}
+.prose h3{font-size:24px;margin:30px 0 10px}
+.prose ul{margin:0 0 18px 22px;color:#31423B}
+.prose ul li{margin-bottom:7px}
+
+/* formats pills */
+.formats-row{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0 6px}
+.formats-row span{
+  font-size:13.5px;font-weight:700;letter-spacing:.05em;
+  border:1.5px solid var(--line);background:#fff;color:var(--ink);
+  padding:8px 16px;border-radius:999px;
+}
+.formats-row span b{color:var(--brand)}
+
+/* full keynote articles */
+.talk-full{cursor:default;text-align:left}
+.talk-full:hover{transform:none}
+.talk-full h3{font-size:26px}
+.talk-full .talk-body p{color:#31423B;font-size:16.5px;margin-bottom:12px}
+.takeaways{margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
+.takeaways h4{
+  font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--brand);margin-bottom:12px;font-family:'Inter',sans-serif;
+}
+.takeaways ul{list-style:none}
+.takeaways li{
+  position:relative;padding:7px 0 7px 28px;color:#31423B;font-size:16px;
+}
+.takeaways li::before{content:"✓";position:absolute;left:2px;color:var(--brand);font-weight:700}
+.talk-grid-full{display:grid;grid-template-columns:1fr;gap:22px}
+
+/* benefit columns */
+.benefit-cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.benefit-col{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px 28px}
+.benefit-col h3{font-size:22px;margin-bottom:16px}
+.benefit-col ul{list-style:none}
+.benefit-col li{position:relative;padding:8px 0 8px 28px;color:#31423B;font-size:16.5px;border-top:1px solid var(--line)}
+.benefit-col li:first-child{border-top:0}
+.benefit-col li::before{content:"✓";position:absolute;left:2px;color:var(--brand);font-weight:700}
+
+/* real testimonials */
+.t-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.t-card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:30px 28px;display:flex;flex-direction:column;
+}
+.t-card .t-quote{
+  font-family:'Fraunces',Georgia,serif;font-size:18.5px;line-height:1.55;color:var(--ink);
+  font-style:italic;margin-bottom:18px;
+}
+.t-card .t-who{margin-top:auto;font-size:14.5px;font-weight:700;color:var(--ink)}
+.t-card .t-role{font-size:14px;color:var(--muted);font-weight:500}
+.t-card .voice-mark{text-align:left;margin-bottom:6px}
+
+/* steps row reuse spacing on subpages */
+.steps .step p{font-size:16px}
+
+/* credential list */
+.cred-list{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;list-style:none;margin-top:8px}
+.cred-list li{
+  background:#fff;border:1px solid var(--line);border-radius:14px;
+  padding:16px 18px;font-weight:600;font-size:15.5px;color:var(--ink);
+}
+
+/* two doors (book page) */
+.doors{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.door{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:34px 30px}
+.door h3{font-size:24px;margin-bottom:12px}
+.door p{color:var(--muted);font-size:16.5px;margin-bottom:20px}
+
+/* footer nav */
+.foot-nav{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;margin-bottom:14px}
+.foot-nav a{color:var(--muted);text-decoration:none;font-size:14.5px;font-weight:500}
+.foot-nav a:hover{color:var(--brand)}
+
+@media (max-width:1100px){ .main-nav{display:none} .header-cta{margin-left:auto} }
+@media (max-width:960px){
+  .t-grid,.benefit-cols,.doors{grid-template-columns:1fr}
+  .cred-list{grid-template-columns:1fr 1fr}
+}
+@media (max-width:520px){ .cred-list{grid-template-columns:1fr} }
+
 /* ---------- enhancement responsive ---------- */
 @media (max-width:960px){
   .ora-stage{grid-template-columns:1fr}
