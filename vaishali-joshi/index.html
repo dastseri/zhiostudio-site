@@ -14,12 +14,13 @@
 
 <div class="credit">Homepage concept designed by <strong>ZhioStudio</strong> for Vaishali Joshi · Concept preview — not the live site</div>
 
-<header class="site-header">
+<header class="site-header" id="siteHeader">
   <a class="brand" href="#top">VAISHALI&nbsp;JOSHI</a>
   <nav class="main-nav">
     <a href="#keynotes">Keynotes</a>
     <a href="#ora">The ORA℠ Method</a>
     <a href="#about">About</a>
+    <a href="#ava">Meet AVA</a>
     <a href="https://vaishali-joshi.com/contact-2/">Contact</a>
   </nav>
   <a class="btn btn-solid header-cta" href="http://book.meetvaishali.com">Book Vaishali to Speak</a>
@@ -29,7 +30,7 @@
 
   <!-- ============ HERO ============ -->
   <section class="hero">
-    <div class="hero-copy">
+    <div class="hero-copy reveal">
       <p class="eyebrow">Mental Health Speaker · Corporate Wellness Strategist · Toronto</p>
       <h1>Igniting the Human Sustainability Movement.</h1>
       <p class="hero-sub">Keynotes and programs that help professionals and teams ward off stress, anxiety, burnout and change fatigue — and lead, and belong, with clarity.</p>
@@ -43,56 +44,137 @@
         <li>Toronto stages: Luminato · IIFA · Nuit Blanche · Dusk Dance</li>
       </ul>
     </div>
-    <div class="hero-media">
+    <div class="hero-media reveal">
       <img src="assets/hero-portrait.jpg" alt="Vaishali Joshi, mental health speaker and founder of oraHuman">
     </div>
   </section>
 
-  <!-- ============ KEYNOTES ============ -->
+  <!-- ============ KEYNOTES — audience explorer ============ -->
   <section class="section" id="keynotes">
-    <p class="eyebrow">Speaking</p>
-    <h2>Keynotes</h2>
-    <p class="section-lede">Signature talks on resilient, trust-based cultures — for conferences, leadership summits and teams in transition.</p>
+    <div class="reveal">
+      <p class="eyebrow">Speaking</p>
+      <h2>Keynotes</h2>
+      <p class="section-lede">Signature talks on resilient, trust-based cultures — for conferences, leadership summits and teams in transition. Choose your audience, and open a talk to read more.</p>
+    </div>
 
-    <div class="cards">
-      <article class="card">
+    <div class="aud-tabs reveal" role="tablist" aria-label="Browse keynotes by audience">
+      <button class="aud-tab active" data-aud="all" role="tab" aria-selected="true">All talks &amp; formats</button>
+      <button class="aud-tab" data-aud="corporate" role="tab" aria-selected="false">Corporate &amp; HR teams</button>
+      <button class="aud-tab" data-aud="women" role="tab" aria-selected="false">Women's leadership</button>
+      <button class="aud-tab" data-aud="events" role="tab" aria-selected="false">Conferences &amp; events</button>
+    </div>
+
+    <div class="cards reveal" id="talkGrid">
+      <article class="card talk-card" data-aud="corporate events" tabindex="0">
         <p class="card-kicker">Keynote 01</p>
         <h3>From Adversity to Adventure: Building Agile, Energized Mindsets in Times of Change</h3>
         <p>For organizations in transition — building agile, energized mindsets when change is the constant.</p>
+        <div class="talk-detail">
+          <p>Change asks a lot of people. This keynote helps teams meet it with agility and energy instead of fatigue — building mindsets that stay energized when change is the constant.</p>
+          <p class="talk-meta">For: organizations in transition · leadership summits · teams carrying change fatigue</p>
+        </div>
+        <span class="talk-toggle" aria-hidden="true">Read more</span>
       </article>
-      <article class="card">
+      <article class="card talk-card" data-aud="corporate events" tabindex="0">
         <p class="card-kicker">Keynote 02</p>
         <h3>Our Full Mind: The Human Education Needed for the Future</h3>
         <p>“You have much more than IQ and EQ.” The human education — beyond intellect and emotion — that the future of work now demands.</p>
+        <div class="talk-detail">
+          <p>“You have much more than IQ and EQ.” A talk about the fuller human education — beyond intellect and emotion — that the future of work now demands of leaders and teams.</p>
+          <p class="talk-meta">For: HR &amp; people leaders · future-of-work conferences · leadership development</p>
+        </div>
+        <span class="talk-toggle" aria-hidden="true">Read more</span>
       </article>
-      <article class="card">
+      <article class="card talk-card" data-aud="women events" tabindex="0">
         <p class="card-kicker">Keynote 03</p>
         <h3>The Bold Wake-Up Call: Self-Leadership for Women in a Changing World</h3>
         <p>A wake-up call on self-leadership for women leading through a changing world.</p>
+        <div class="talk-detail">
+          <p>A wake-up call — and an invitation. On self-leadership for women who are leading through a changing world, and the energy it takes to do it sustainably.</p>
+          <p class="talk-meta">For: women's leadership events · professional networks · conferences</p>
+        </div>
+        <span class="talk-toggle" aria-hidden="true">Read more</span>
       </article>
-      <article class="card card-wide">
+      <article class="card talk-card" data-aud="events" tabindex="0">
         <p class="card-kicker">Also available</p>
         <h3>Emcee &amp; Facilitation</h3>
         <p>Vaishali is invited to anchor and moderate prominent events — engaging the audience, keeping the energy high, and moving seamlessly between subjects and stories.</p>
+        <div class="talk-detail">
+          <p>As emcee and facilitator, Vaishali anchors and moderates prominent events — engaging the audience, keeping the energy high, and moving seamlessly between subjects and stories, so the day itself feels held.</p>
+          <p class="talk-meta">For: conferences · galas · multi-speaker events</p>
+        </div>
+        <span class="talk-toggle" aria-hidden="true">Read more</span>
       </article>
     </div>
+    <p class="aud-empty" id="audEmpty" hidden>No talks under this audience yet — <a href="https://vaishali-joshi.com/contact-2/">ask about a tailored session</a>.</p>
 
-    <p class="section-cta"><a class="btn btn-solid" href="http://book.meetvaishali.com">Invite Vaishali to Speak at Your Event</a></p>
+    <p class="section-cta reveal"><a class="btn btn-solid" href="http://book.meetvaishali.com">Invite Vaishali to Speak at Your Event</a></p>
   </section>
 
-  <!-- ============ ORA METHOD ============ -->
+  <!-- ============ ORA METHOD — guided mini-experience ============ -->
   <section class="section ora" id="ora">
-    <p class="eyebrow">The ORA℠ Method</p>
-    <h2>Observe. Release. Activate.</h2>
-    <p class="section-lede">ORA℠ is a proprietary methodology that empowers individuals to apply three powerful mindset levers continually — building the skills to maintain mental and emotional wellness.</p>
-
-    <div class="steps">
-      <div class="step"><span class="step-letter">O</span><h3>Observe</h3><p>Self-discovery first: identify the triggers behind stress, distraction and disconnection.</p></div>
-      <div class="step"><span class="step-letter">R</span><h3>Release</h3><p>Let go of the negativity and anxiety that hijack your response — swiftly, before they lead.</p></div>
-      <div class="step"><span class="step-letter">A</span><h3>Activate</h3><p>Channel your energy to the right intelligences at the right time — Vaishali’s definition of mental agility.</p></div>
+    <div class="reveal">
+      <p class="eyebrow">The ORA℠ Method</p>
+      <h2>Observe. Release. Activate.</h2>
+      <p class="section-lede">ORA℠ is a proprietary methodology that empowers individuals to apply three powerful mindset levers continually — building the skills to maintain mental and emotional wellness. Take sixty quiet seconds and feel how it works:</p>
     </div>
 
-    <div class="programs">
+    <div class="ora-explorer reveal" id="oraExplorer">
+      <div class="ora-stage">
+        <div class="breath" id="breathCircle" aria-hidden="true"><span id="breathWord">breathe</span></div>
+        <div class="ora-panel" id="oraPanel" aria-live="polite">
+          <p class="card-kicker" id="oraKicker">Begin</p>
+          <h3 id="oraTitle">Three levers, one breath at a time</h3>
+          <p id="oraText">Press begin, and let each step arrive at the pace of a slow breath — the way ORA℠ is practised: continually, and gently.</p>
+        </div>
+      </div>
+      <div class="ora-controls">
+        <div class="ora-steps" role="tablist" aria-label="The three ORA steps">
+          <button class="ora-step-btn" data-step="0" role="tab" aria-selected="false"><span class="step-letter">O</span>Observe</button>
+          <button class="ora-step-btn" data-step="1" role="tab" aria-selected="false"><span class="step-letter">R</span>Release</button>
+          <button class="ora-step-btn" data-step="2" role="tab" aria-selected="false"><span class="step-letter">A</span>Activate</button>
+        </div>
+        <button class="btn btn-solid" id="oraBegin">Begin the practice</button>
+      </div>
+    </div>
+
+    <!-- Self-check, in ORA language -->
+    <div class="selfcheck reveal" id="selfcheck">
+      <p class="card-kicker">A moment to check in</p>
+      <h3>Where is your energy asking for care?</h3>
+      <p class="sc-intro">Three gentle questions, in the language of ORA℠. There are no scores here — only a place to begin.</p>
+      <div id="scQuiz">
+        <fieldset class="sc-q">
+          <legend>1 · When the day gets loud, what happens first?</legend>
+          <label><input type="radio" name="sc1" value="R"> My mind keeps replaying what went wrong</label>
+          <label><input type="radio" name="sc1" value="O"> I lose sight of what I actually feel</label>
+          <label><input type="radio" name="sc1" value="A"> I push through on empty</label>
+        </fieldset>
+        <fieldset class="sc-q">
+          <legend>2 · After a hard meeting, what lingers?</legend>
+          <label><input type="radio" name="sc2" value="R"> Tension I carry into the next hour</label>
+          <label><input type="radio" name="sc2" value="O"> I couldn't name what I needed</label>
+          <label><input type="radio" name="sc2" value="A"> My focus scatters for the rest of the day</label>
+        </fieldset>
+        <fieldset class="sc-q">
+          <legend>3 · What would help most right now?</legend>
+          <label><input type="radio" name="sc3" value="O"> To see my triggers clearly</label>
+          <label><input type="radio" name="sc3" value="R"> To let go of the anxiety before it leads</label>
+          <label><input type="radio" name="sc3" value="A"> To channel my energy to the right place</label>
+        </fieldset>
+        <button class="btn btn-ghost" id="scButton" type="button">See where to begin</button>
+      </div>
+      <div class="sc-result" id="scResult" hidden aria-live="polite">
+        <p class="card-kicker">Your place to begin</p>
+        <h4 id="scResultTitle"></h4>
+        <p id="scResultText"></p>
+        <p class="sc-note">This is where the ORA Experience℠ begins. A gentle reflection in Vaishali's ORA℠ language — not a diagnosis.</p>
+        <a class="btn btn-solid" href="https://vaishali-joshi.com/contact-2/">Book a Free Consultation</a>
+        <button class="sc-again" id="scAgain" type="button">Start again</button>
+      </div>
+    </div>
+
+    <div class="programs reveal">
       <article class="program">
         <p class="card-kicker">For Individuals</p>
         <h3>The ORA Experience℠</h3>
@@ -120,10 +202,10 @@
 
   <!-- ============ ABOUT ============ -->
   <section class="section about" id="about">
-    <div class="about-media">
+    <div class="about-media reveal">
       <img src="assets/in-action.jpg" alt="Vaishali Joshi leading a session in a university lecture hall">
     </div>
-    <div class="about-copy">
+    <div class="about-copy reveal">
       <p class="eyebrow">About Vaishali</p>
       <h2>From corporate trailblazer to inspirational adventurer.</h2>
       <p>Vaishali Joshi is a Workplace Wellness Strategist who blends strategy with mental wellbeing. She draws on a rare 20+ years of experience across eight industries in global business transformation leadership and energy-based mindset training.</p>
@@ -135,21 +217,69 @@
     </div>
   </section>
 
-  <!--
-    TESTIMONIALS (placeholder — drop in Vaishali's real client testimonials from vaishali-joshi.com):
-    e.g. Len Karakowsky, Professor, Schulich School of Business · Kunal Bharadva, Partner, PKF International ·
-    Mary Kazamias, CEO, Traduction Serge Bélair · Rosita Murray, Director People & Culture, Mister Safety Shoes ·
-    Stephanie Macri, City of Toronto — full texts live on her current site and speaker profile.
-  -->
+  <!-- ============ VOICES — reserved space for testimonials & organizations ============ -->
+  <section class="section voices" id="voices">
+    <div class="reveal">
+      <p class="eyebrow">Voices &amp; Rooms</p>
+      <h2>Kind words, real rooms</h2>
+      <p class="section-lede">This space is reserved for the words of the organizers, HR leaders and clients who have brought Vaishali to their stages — and for the organizations she has spoken for. Their testimonials belong here, in their own words.</p>
+    </div>
+    <div class="voice-cards reveal">
+      <div class="voice-card"><span class="voice-mark">“ ”</span><p>Reserved for a client's words</p></div>
+      <div class="voice-card"><span class="voice-mark">“ ”</span><p>Reserved for an organizer's words</p></div>
+      <div class="voice-card"><span class="voice-mark">“ ”</span><p>Reserved for a team's words</p></div>
+    </div>
+    <p class="stages-line reveal">Toronto stages include <strong>Luminato · IIFA · Nuit Blanche · Dusk Dance</strong></p>
+  </section>
 
-  <!--
-    MEDIA LOGOS (placeholder — her current site carries these media marks as images):
-    CTV Your Morning · CHCH TV · OMNI TV · Authority Magazine · Bold Journey · Canvas Rebel · Vita · Women of Influence
-  -->
+  <!-- ============ STAY CONNECTED — email capture (concept demo) ============ -->
+  <section class="section connect" id="connect">
+    <div class="connect-inner reveal">
+      <p class="eyebrow">Stay connected</p>
+      <h2>Not ready to book today? Stay close.</h2>
+      <p class="section-lede">Occasional notes on human sustainability, upcoming talks and ORA℠ programs — written for organizers and HR leaders who aren't ready to book today, and don't want to lose the thread.</p>
+      <form class="connect-form" data-demo novalidate>
+        <label class="sr-only" for="cc-name">Your name</label>
+        <input id="cc-name" type="text" placeholder="Your name" autocomplete="name">
+        <label class="sr-only" for="cc-email">Work email</label>
+        <input id="cc-email" type="email" required placeholder="Work email" autocomplete="email">
+        <button class="btn btn-solid" type="submit">Stay connected</button>
+        <div class="form-success" role="status">Thank you — you're connected. <span>(Concept demo: this form doesn't send anywhere yet.)</span></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ AVA — the booking line, answered with care ============ -->
+  <section class="section ava-band" id="ava">
+    <div class="ava-grid">
+      <div class="reveal">
+        <p class="eyebrow eyebrow-light">Add AVA to your booking line</p>
+        <h2>Every booking inquiry, answered with care — 24/7</h2>
+        <p class="ava-lede">Organizers and HR teams often call after hours, between meetings, from another time zone. AVA — the AI receptionist from NexAIS, the studio behind this concept — answers Vaishali's booking line around the clock, so no inquiry is ever missed or left waiting.</p>
+        <ul class="ava-points">
+          <li><strong>Answers 24/7.</strong> Every booking-inquiry call is picked up — evenings, weekends, holidays.</li>
+          <li><strong>Captures the complete details.</strong> Event date, organization, audience and contact — everything the team needs to reply well, the first time.</li>
+          <li><strong>Follows up.</strong> Callers are confirmed and followed up by text and email, so a warm inquiry never goes cold.</li>
+          <li><strong>Hands over with care.</strong> Urgent or complex requests are passed straight to a human.</li>
+        </ul>
+        <p class="ava-note">AVA is a separate service you can add alongside the website — commercially, it is a purchasable part of this offer, ready whenever your booking line is.</p>
+        <p class="ava-actions">
+          <button class="btn btn-solid" type="button" data-ava-open>Chat with AVA</button>
+          <a class="btn btn-light" href="https://nexais.ca">Meet AVA at NexAIS</a>
+        </p>
+      </div>
+      <div class="ava-call-card reveal">
+        <p class="card-kicker">Hear her answer — live</p>
+        <p class="ava-call-lede">Call the live demo line and hear AVA answer, just as she would for an organizer calling about your event:</p>
+        <a class="ava-phone" href="tel:+14375290400">+1 (437) 529-0400</a>
+        <p class="ava-call-hint">Call and hear AVA answer — a real, working demonstration, not a recording. Try asking her to book a keynote.</p>
+      </div>
+    </div>
+  </section>
 
   <!-- ============ FINAL CTA ============ -->
   <section class="final-cta">
-    <div class="final-cta-inner">
+    <div class="final-cta-inner reveal">
       <h2>Invite Vaishali to speak at your event.</h2>
       <p>Bring the Human Sustainability Movement to your conference, summit or team.</p>
       <div class="hero-ctas">
@@ -166,5 +296,27 @@
   <p class="foot-note">Concept homepage by ZhioStudio (NexAIS). Photography and wording drawn from vaishali-joshi.com.</p>
 </footer>
 
+<!-- ============ AVA chat widget (front-end demo) ============ -->
+<button class="ava-bubble" id="avaBubble" aria-expanded="false" aria-controls="avaPanel"><span class="pulse"></span> Ask AVA — booking assistant</button>
+<div class="ava-panel" id="avaPanel" role="dialog" aria-label="AVA booking assistant demo">
+  <div class="ava-head">
+    <div class="ava-avatar">A</div>
+    <div><strong>AVA</strong><small>Vaishali's booking line · answered with care, 24/7</small></div>
+    <button class="ava-close" id="avaClose" aria-label="Close chat">×</button>
+  </div>
+  <div class="ava-body" id="avaBody"></div>
+  <div class="ava-chips">
+    <button class="chip" data-q="What does Vaishali speak about?">Keynote topics</button>
+    <button class="chip" data-q="What is the ORA method?">The ORA℠ method</button>
+    <button class="chip" data-q="How do I book Vaishali?">How to book</button>
+    <button class="chip" data-q="What can AVA do?">What can AVA do?</button>
+  </div>
+  <div class="ava-inputrow">
+    <input id="avaInput" type="text" placeholder="Ask about booking Vaishali…" aria-label="Ask AVA a question">
+    <button class="btn btn-solid" id="avaSend">Send</button>
+  </div>
+  <div class="ava-demo-note">Front-end demo by AVA · NexAIS — scripted sample answers, no live connection.</div>
+</div>
+<script src="app.js"></script>
 </body>
 </html>

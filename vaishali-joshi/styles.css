@@ -168,3 +168,221 @@ blockquote cite{display:block;margin-top:12px;font-size:14.5px;font-style:normal
   .about-media img{height:300px}
   .btn{padding:13px 22px}
 }
+
+/* ================= Enhancement pass — interactive, wellness-paced ================= */
+
+/* header shadow once the page moves */
+.site-header{transition:box-shadow .35s ease}
+.site-header.scrolled{box-shadow:0 10px 30px rgba(21,33,29,.09)}
+
+/* scroll reveal — soft, slow, calm */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- Keynote explorer ---------- */
+.aud-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+.aud-tab{
+  font:inherit;font-size:14.5px;font-weight:600;cursor:pointer;
+  padding:11px 20px;border-radius:999px;
+  border:1.5px solid var(--line);background:var(--card);color:var(--ink);
+  transition:.25s;
+}
+.aud-tab:hover{border-color:var(--brand);color:var(--brand)}
+.aud-tab.active{background:var(--brand);border-color:var(--brand);color:#fff}
+.talk-card{cursor:pointer;transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease}
+.talk-card:hover,.talk-card:focus-visible{transform:translateY(-5px);box-shadow:0 18px 38px rgba(21,33,29,.10);border-color:#CFC9BA;outline:none}
+.talk-card.open{border-color:var(--brand)}
+.talk-detail{
+  max-height:0;overflow:hidden;opacity:0;
+  transition:max-height .55s ease,opacity .45s ease,margin .45s ease;
+}
+.talk-card.open .talk-detail{max-height:300px;opacity:1;margin-top:14px}
+.talk-detail p{margin-bottom:10px}
+.talk-meta{font-size:13.5px;font-weight:600;color:var(--brand)!important;letter-spacing:.02em}
+.talk-toggle{
+  display:inline-block;margin-top:16px;font-size:13.5px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--brand);
+}
+.talk-toggle::after{content:" ↓"}
+.talk-card.open .talk-toggle::after{content:" ↑"}
+.talk-card.hide{display:none}
+.aud-empty{color:var(--muted);font-size:16.5px;margin-top:6px}
+
+/* ---------- ORA explorer ---------- */
+.ora-explorer{
+  background:var(--card);border:1px solid var(--line);border-radius:24px;
+  padding:clamp(26px,4vw,44px);margin-bottom:28px;
+}
+.ora-stage{display:grid;grid-template-columns:220px 1fr;gap:clamp(24px,4vw,52px);align-items:center;margin-bottom:30px}
+.breath{
+  width:200px;height:200px;border-radius:50%;margin:0 auto;
+  background:radial-gradient(circle at 35% 32%, #2E8B74, var(--brand) 62%, var(--brand-dark));
+  display:grid;place-items:center;color:#EAF4F0;
+  font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:19px;letter-spacing:.04em;
+  box-shadow:0 24px 48px rgba(11,90,78,.28);
+  transform:scale(.86);transition:transform 4s ease-in-out;
+}
+.breath.inhale{transform:scale(1)}
+.breath.exhale{transform:scale(.86)}
+.ora-panel h3{font-size:27px;margin-bottom:10px}
+.ora-panel p{color:var(--muted);font-size:17.5px;max-width:36em}
+.ora-controls{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.ora-steps{display:flex;gap:10px;flex-wrap:wrap}
+.ora-step-btn{
+  font:inherit;font-size:15px;font-weight:600;cursor:pointer;
+  display:inline-flex;align-items:center;gap:10px;
+  padding:9px 18px 9px 9px;border-radius:999px;
+  border:1.5px solid var(--line);background:#fff;color:var(--ink);transition:.25s;
+}
+.ora-step-btn .step-letter{width:34px;height:34px;font-size:16px;margin:0;background:#E7EFEA;color:var(--brand);transition:.25s}
+.ora-step-btn:hover{border-color:var(--brand)}
+.ora-step-btn.active{border-color:var(--brand);background:#EFF5F1}
+.ora-step-btn.active .step-letter{background:var(--brand);color:#fff}
+#oraBegin{margin-left:auto}
+
+/* ---------- Self-check ---------- */
+.selfcheck{
+  background:var(--card);border:1px solid var(--line);border-radius:24px;
+  padding:clamp(26px,4vw,44px);margin-bottom:44px;
+}
+.selfcheck h3{font-size:26px;margin-bottom:8px}
+.sc-intro{color:var(--muted);margin-bottom:26px;max-width:42em}
+.sc-q{border:0;margin-bottom:22px}
+.sc-q legend{font-weight:600;font-size:16.5px;margin-bottom:12px;padding:0}
+.sc-q label{
+  display:block;padding:12px 16px;margin-bottom:8px;cursor:pointer;
+  border:1.5px solid var(--line);border-radius:12px;font-size:16px;color:var(--ink);
+  transition:.2s;
+}
+.sc-q label:hover{border-color:var(--brand)}
+.sc-q input{accent-color:var(--brand);margin-right:8px}
+.sc-q label:has(input:checked){border-color:var(--brand);background:#EFF5F1}
+.sc-result h4{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:26px;margin-bottom:10px}
+.sc-result p{color:var(--muted);max-width:42em;margin-bottom:14px}
+.sc-note{font-size:14px}
+.sc-again{
+  font:inherit;background:none;border:0;color:var(--brand);font-weight:600;
+  cursor:pointer;margin-left:18px;text-decoration:underline;text-underline-offset:3px;
+}
+
+/* ---------- Voices (reserved testimonials space) ---------- */
+.voice-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:26px}
+.voice-card{
+  border:1.5px dashed #CFC9BA;border-radius:var(--radius);
+  padding:36px 28px;text-align:center;color:var(--muted);background:#FFFDF8;
+}
+.voice-mark{display:block;font-family:'Fraunces',Georgia,serif;font-size:34px;color:var(--brand);opacity:.55;margin-bottom:10px}
+.voice-card p{font-size:15px;letter-spacing:.03em}
+.stages-line{font-size:16.5px;color:var(--muted)}
+.stages-line strong{color:var(--ink)}
+
+/* ---------- Stay connected ---------- */
+.connect{padding-top:12px}
+.connect-inner{
+  background:#F1EFE7;border-radius:32px;
+  padding:clamp(40px,5vw,64px) clamp(24px,5vw,64px);text-align:center;
+}
+.connect-inner .section-lede{margin-left:auto;margin-right:auto}
+.connect-form{
+  display:flex;gap:12px;flex-wrap:wrap;justify-content:center;align-items:center;
+  max-width:760px;margin:0 auto;
+}
+.connect-form input{
+  font:inherit;font-size:16px;padding:14px 20px;border-radius:999px;
+  border:1.5px solid var(--line);background:#fff;color:var(--ink);min-width:230px;flex:1;
+}
+.connect-form input:focus{outline:2px solid var(--brand);outline-offset:1px;border-color:transparent}
+.form-success{
+  display:none;width:100%;margin-top:16px;padding:16px 20px;border-radius:14px;
+  background:#E5F2EC;color:var(--brand-dark);font-weight:600;font-size:16px;
+}
+.form-success span{font-weight:400;color:var(--muted)}
+.form-success.show{display:block}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- AVA band ---------- */
+.ava-band{
+  background:linear-gradient(160deg,var(--brand-dark),var(--ink) 78%);
+  border-radius:32px;margin:12px clamp(12px,3vw,40px);max-width:none;color:#EDF2EF;
+}
+.ava-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(28px,5vw,64px);align-items:center;max-width:1320px;margin:0 auto}
+.eyebrow-light{color:#8FD0C2}
+.ava-band h2{color:#fff}
+.ava-lede{color:#C6D2CC;font-size:18px;margin-bottom:24px;max-width:38em}
+.ava-points{list-style:none;margin-bottom:24px}
+.ava-points li{padding:11px 0 11px 30px;position:relative;border-top:1px solid rgba(255,255,255,.13);color:#D7E2DD;font-size:16.5px}
+.ava-points li::before{content:"✓";position:absolute;left:2px;color:#8FD0C2;font-weight:700}
+.ava-points strong{color:#fff}
+.ava-note{color:#C6D2CC;font-size:16px;margin-bottom:26px;max-width:38em}
+.ava-actions{display:flex;gap:14px;flex-wrap:wrap}
+.ava-call-card{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);
+  border-radius:24px;padding:clamp(26px,3.4vw,40px);text-align:center;
+}
+.ava-call-card .card-kicker{color:#8FD0C2}
+.ava-call-lede{color:#D7E2DD;font-size:16.5px;margin-bottom:18px}
+.ava-phone{
+  display:block;font-family:'Fraunces',Georgia,serif;
+  font-size:clamp(30px,3.4vw,42px);font-weight:600;color:#fff;text-decoration:none;
+  letter-spacing:.01em;margin-bottom:16px;
+}
+.ava-phone:hover{color:#8FD0C2}
+.ava-call-hint{color:#9FB3AA;font-size:14.5px}
+
+/* ---------- AVA chat widget (pattern after the Alex Boylan demo) ---------- */
+.ava-bubble{
+  position:fixed;right:1.1rem;bottom:1.1rem;z-index:80;
+  display:inline-flex;align-items:center;gap:.6rem;
+  background:var(--brand-dark);color:#fff;font-weight:700;
+  padding:.85rem 1.2rem;border-radius:999px;cursor:pointer;
+  box-shadow:0 18px 38px rgba(21,33,29,.28);border:2px solid #8FD0C2;
+  font:inherit;font-size:.95rem;transition:transform .25s;
+}
+.ava-bubble:hover{transform:translateY(-3px)}
+.ava-bubble .pulse{width:10px;height:10px;border-radius:50%;background:#34d399;box-shadow:0 0 0 0 rgba(52,211,153,.6);animation:avaPulse 2s infinite}
+@keyframes avaPulse{70%{box-shadow:0 0 0 9px rgba(52,211,153,0)}100%{box-shadow:0 0 0 0 rgba(52,211,153,0)}}
+.ava-panel{
+  position:fixed;right:1.1rem;bottom:5.4rem;z-index:81;
+  width:min(380px,calc(100vw - 2.2rem));
+  background:#fff;border-radius:22px;border:1px solid var(--line);
+  box-shadow:0 24px 54px rgba(21,33,29,.30);overflow:hidden;
+  display:none;flex-direction:column;max-height:min(560px,calc(100vh - 8rem));
+}
+.ava-panel.open{display:flex}
+.ava-head{background:var(--brand-dark);color:#fff;padding:1rem 1.1rem;display:flex;gap:.8rem;align-items:center}
+.ava-avatar{width:44px;height:44px;border-radius:50%;background:#8FD0C2;color:var(--brand-dark);display:grid;place-items:center;font-weight:900;font-size:1.05rem;flex:none;font-family:'Fraunces',Georgia,serif}
+.ava-head strong{display:block;line-height:1.15}
+.ava-head small{color:#BCD6CD;font-weight:600}
+.ava-close{margin-left:auto;background:none;border:0;color:#fff;font-size:1.3rem;cursor:pointer;line-height:1}
+.ava-body{padding:1rem;display:grid;gap:.7rem;overflow-y:auto;background:var(--paper)}
+.msg{max-width:86%;padding:.7rem .9rem;border-radius:16px;font-size:.93rem;line-height:1.5}
+.msg.ava{background:#fff;border:1px solid var(--line);border-bottom-left-radius:4px;color:var(--ink)}
+.msg.user{background:var(--brand);color:#fff;justify-self:end;border-bottom-right-radius:4px}
+.ava-chips{display:flex;flex-wrap:wrap;gap:.45rem;padding:.7rem 1rem;background:#fff;border-top:1px solid var(--line)}
+.chip{border:1.5px solid var(--brand);background:#fff;color:var(--brand);font-weight:700;font-size:.82rem;border-radius:999px;padding:.45rem .8rem;cursor:pointer;transition:.2s;font:inherit}
+.chip:hover{background:var(--brand);color:#fff}
+.ava-inputrow{display:flex;gap:.5rem;padding:.7rem;background:#fff;border-top:1px solid var(--line)}
+.ava-inputrow input{flex:1;font:inherit;font-size:.95rem;padding:.6rem .9rem;border:1.5px solid var(--line);border-radius:999px;min-height:46px;min-width:0}
+.ava-inputrow input:focus{outline:2px solid var(--brand);outline-offset:1px;border-color:transparent}
+.ava-inputrow .btn{padding:.5rem 1.1rem;min-height:46px}
+.ava-demo-note{font-size:.75rem;color:var(--muted);text-align:center;padding:.55rem;background:#fff;border-top:1px solid var(--line)}
+
+/* ---------- enhancement responsive ---------- */
+@media (max-width:960px){
+  .ora-stage{grid-template-columns:1fr}
+  .voice-cards{grid-template-columns:1fr}
+  .ava-grid{grid-template-columns:1fr}
+  #oraBegin{margin-left:0}
+  .talk-detail{max-height:none}
+  .talk-card.open .talk-detail{max-height:420px}
+}
+@media (max-width:520px){
+  .breath{width:168px;height:168px}
+  .connect-form input{min-width:0;width:100%}
+  .connect-form .btn{width:100%}
+  .ava-actions .btn{flex:1;text-align:center}
+}
