@@ -75,6 +75,7 @@
       stepBtns  = document.querySelectorAll(".ora-step-btn"),
       beginBtn  = document.getElementById("oraBegin");
   var oraTimers = [];
+  var oraOrbitApi = null; /* set by the art-direction orbit engine, when present */
   function oraClear(){ oraTimers.forEach(clearTimeout); oraTimers = []; }
   function oraLater(fn, ms){ oraTimers.push(setTimeout(fn, ms)); }
   function oraShow(i){
@@ -85,6 +86,7 @@
       b.classList.toggle("active", bi === i);
       b.setAttribute("aria-selected", bi === i ? "true" : "false");
     });
+    if(oraOrbitApi) oraOrbitApi.bringToFront(i);
   }
   function breathCycle(done){
     if(!breath){ done && done(); return; }
@@ -173,6 +175,164 @@
         box.scrollIntoView({behavior: reduced ? "auto" : "smooth", block:"center"});
       }
       form.querySelectorAll("input").forEach(function(f){ f.value = ""; });
+    });
+  });
+
+  /* ================= Art direction: tilt, parallax, ORA orbit, video ================= */
+  var finePointer = window.matchMedia("(pointer: fine)").matches;
+
+  /* ----- Gentle 3D tilt: keynote cards & photo frames (fine pointers only) ----- */
+  if(finePointer && !reduced){
+    document.querySelectorAll("[data-tilt]").forEach(function(el){
+      el.classList.add("tilt");
+      var maxDeg = el.offsetWidth > 480 ? 5 : 7.5, queued = null;
+      el.addEventListener("pointermove", function(e){
+        if(queued) return;
+        queued = requestAnimationFrame(function(){
+          queued = null;
+          var r = el.getBoundingClientRect();
+          var px = (e.clientX - r.left) / r.width - .5;
+          var py = (e.clientY - r.top) / r.height - .5;
+          el.classList.add("live");
+          el.style.setProperty("--ry", (px * maxDeg).toFixed(2) + "deg");
+          el.style.setProperty("--rx", (-py * maxDeg).toFixed(2) + "deg");
+        });
+      });
+      el.addEventListener("pointerleave", function(){
+        el.classList.remove("live");
+        el.style.setProperty("--rx", "0deg");
+        el.style.setProperty("--ry", "0deg");
+      });
+    });
+
+    /* ----- Hero parallax: layers drift at different rates ----- */
+    var plxEls = document.querySelectorAll("[data-plx]");
+    if(plxEls.length){
+      var pmx = 0, pmy = 0, plxQueued = false;
+      function plxRender(){
+        plxQueued = false;
+        var sc = window.scrollY;
+        plxEls.forEach(function(el){
+          var parts = (el.getAttribute("data-plx") || "").split(",");
+          var sf = parseFloat(parts[0]) || 0, pf = parseFloat(parts[1]) || 0;
+          el.style.transform = "translate3d(" + (pmx * pf).toFixed(1) + "px," + (-sc * sf + pmy * pf).toFixed(1) + "px,0)";
+        });
+      }
+      function plxQueue(){ if(!plxQueued){ plxQueued = true; requestAnimationFrame(plxRender); } }
+      window.addEventListener("scroll", plxQueue, {passive:true});
+      var heroSec = document.querySelector(".hero");
+      if(heroSec){
+        heroSec.addEventListener("pointermove", function(e){
+          var r = heroSec.getBoundingClientRect();
+          pmx = (e.clientX - r.left) / r.width - .5;
+          pmy = (e.clientY - r.top) / r.height - .5;
+          plxQueue();
+        });
+        heroSec.addEventListener("pointerleave", function(){ pmx = 0; pmy = 0; plxQueue(); });
+      }
+      plxEls.forEach(function(el){
+        setTimeout(function(){ el.style.transition = "opacity .8s ease"; }, 1000);
+      });
+      plxRender();
+    }
+  }
+
+  /* ----- ORA orbit: three levers on a slow 3D ring ----- */
+  function makeOrbit(zone, onPick){
+    var nodes = Array.prototype.slice.call(zone.querySelectorAll(".orbit-node"));
+    if(!nodes.length) return null;
+    var angle = Math.PI / 2, anim = null, lastInteract = 0, visible = true;
+    function render(){
+      var rx = zone.clientWidth * 0.40, ry = rx * 0.44;
+      nodes.forEach(function(node, i){
+        var a = angle + i * (Math.PI * 2 / 3);
+        var s = Math.sin(a), depth = (s + 1) / 2;
+        node.style.transform = "translate(-50%,-50%) translate(" + (Math.cos(a) * rx).toFixed(1) + "px," + (s * ry).toFixed(1) + "px) scale(" + (0.76 + 0.30 * depth).toFixed(3) + ")";
+        node.style.opacity = (0.45 + 0.55 * depth).toFixed(2);
+        node.style.zIndex = String(10 + Math.round(depth * 10));
+        node.classList.toggle("front", s > 0.86);
+      });
+    }
+    function bringToFront(i, instant){
+      lastInteract = performance.now();
+      var twoPi = Math.PI * 2;
+      var want = Math.PI / 2 - i * (Math.PI * 2 / 3);
+      var diff = (want - angle) % twoPi;
+      if(diff > Math.PI) diff -= twoPi;
+      if(diff < -Math.PI) diff += twoPi;
+      if(instant || reduced){ angle += diff; anim = null; render(); return; }
+      anim = {from: angle, to: angle + diff, start: performance.now(), dur: 900};
+    }
+    nodes.forEach(function(node, i){
+      node.addEventListener("click", function(){ bringToFront(i); if(onPick) onPick(i); });
+    });
+    render();
+    if(!reduced){
+      if("IntersectionObserver" in window){
+        new IntersectionObserver(function(en){ visible = en[0].isIntersecting; }, {threshold:0.05}).observe(zone);
+      }
+      var last = performance.now();
+      (function loop(now){
+        requestAnimationFrame(loop);
+        var dt = Math.min(50, now - last); last = now;
+        if(!visible || document.hidden) return;
+        if(anim){
+          var p = Math.min(1, (now - anim.start) / anim.dur);
+          var e = p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+          angle = anim.from + (anim.to - anim.from) * e;
+          if(p >= 1) anim = null;
+        } else if(now - lastInteract > 6000){
+          angle += dt * 0.00016; /* one slow revolution ≈ 39 seconds */
+        }
+        render();
+      })(performance.now());
+    }
+    return {bringToFront: bringToFront};
+  }
+
+  var homeReadout = document.getElementById("homeOraReadout");
+  document.querySelectorAll("[data-orbit]").forEach(function(zone){
+    var onMethod = !!zone.closest(".ora-explorer");
+    var api = makeOrbit(zone, function(i){
+      if(onMethod){
+        oraClear();
+        if(breath){ breath.classList.remove("inhale", "exhale"); }
+        if(breathWord) breathWord.textContent = "breathe";
+        oraShow(i);
+      } else if(homeReadout){
+        homeReadout.innerHTML = "";
+        var st = document.createElement("strong");
+        st.textContent = ORA[i].title;
+        homeReadout.appendChild(st);
+        homeReadout.appendChild(document.createTextNode(ORA[i].text));
+      }
+    });
+    if(onMethod) oraOrbitApi = api;
+  });
+
+  /* ----- Video facades: the player loads only when asked ----- */
+  document.querySelectorAll(".vid").forEach(function(v){
+    function play(){
+      if(v.classList.contains("on")) return;
+      var src = null;
+      if(v.getAttribute("data-yt")){
+        src = "https://www.youtube-nocookie.com/embed/" + v.getAttribute("data-yt") + "?autoplay=1&rel=0";
+      } else if(v.getAttribute("data-vimeo")){
+        src = "https://player.vimeo.com/video/" + v.getAttribute("data-vimeo") + "?h=" + (v.getAttribute("data-vimeo-h") || "") + "&autoplay=1&title=0&byline=0&portrait=0";
+      }
+      if(!src) return;
+      v.classList.add("on");
+      var f = document.createElement("iframe");
+      f.src = src;
+      f.title = v.getAttribute("aria-label") || "Video";
+      f.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture; fullscreen");
+      f.setAttribute("allowfullscreen", "");
+      v.innerHTML = "";
+      v.appendChild(f);
+    }
+    v.addEventListener("click", play);
+    v.addEventListener("keydown", function(e){
+      if(e.key === "Enter" || e.key === " "){ e.preventDefault(); play(); }
     });
   });
 
