@@ -454,9 +454,9 @@ document.querySelectorAll('img[data-anim]').forEach(function(img){
 (function(){
   var el=document.getElementById('heroFrames'); if(!el) return;
   var N=100;
-  function fr(i){ return 'assets/hero-web/frame'+String(i+1).padStart(2,'0')+'.webp?v=9'; }
+  function fr(i){ return 'assets/hero-web/frame'+String(i+1).padStart(2,'0')+'.webp?v=10'; }
   var pre=[]; for(var i=0;i<N;i++){ var im=new Image(); im.src=fr(i); pre.push(im); }
-  var idx=0; el.style.backgroundImage="url('assets/hero-web/frame01.webp?v=9')"; el.style.backgroundSize='cover'; el.style.backgroundPosition='center';
+  var idx=0; el.style.backgroundImage="url('assets/hero-web/frame01.webp?v=10')"; el.style.backgroundSize='cover'; el.style.backgroundPosition='center';
   setInterval(function(){ idx=(idx+1)%N; el.style.backgroundImage='url('+fr(idx)+')'; },100);
 })();
 </script>
