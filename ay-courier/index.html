@@ -205,7 +205,7 @@ footer .fine{border-top:1px solid rgba(255,255,255,.14);margin-top:2.2rem;paddin
   <section class="hero">
     <div class="hero-media" aria-hidden="true">
       <img src="assets/hero-van.jpg?v=3" alt="" onerror="this.remove()">
-      <img src="assets/hero-anim.gif?v=7" alt="">
+      <div id="heroFrames" style="position:absolute;inset:0;background-size:cover;background-position:center" aria-hidden="true"></div>
     </div>
     <div class="hero-shade" aria-hidden="true"></div>
     <figure class="float-vid" aria-label="Parcels loading themselves into the van — concept film">
@@ -445,6 +445,19 @@ document.querySelectorAll('img[data-anim]').forEach(function(img){
     img.replaceWith(v);
   });
 });
+</script>
+<script>
+// hero motion: crossfading frame sequence (works in every renderer, no video element needed)
+(function(){
+  var el=document.getElementById('heroFrames'); if(!el) return;
+  var N=40, frames=[];
+  for(var i=0;i<N;i++){ var im=new Image(); im.src='assets/hero-frames/frame'+String(i+1).padStart(2,'0')+'.png?v=8'; frames.push(im); }
+  var idx=0;
+  setInterval(function(){
+    idx=(idx+1)%N;
+    el.style.backgroundImage='url(assets/hero-frames/frame'+String(idx+1).padStart(2,'0')+'.png?v=8)';
+  },100);
+})();
 </script>
 </body>
 </html>
