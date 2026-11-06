@@ -453,10 +453,10 @@ document.querySelectorAll('img[data-anim]').forEach(function(img){
 // hero motion: crossfading frame sequence (works in every renderer, no video element needed)
 (function(){
   var el=document.getElementById('heroFrames'); if(!el) return;
-  var N=100;
-  function fr(i){ return 'assets/hero-web/frame'+String(i+1).padStart(2,'0')+'.webp?v=10'; }
+  var N=76;
+  function fr(i){ return 'assets/hero-web3/frame'+String(i+1).padStart(2,'0')+'.webp?v=11'; }
   var pre=[]; for(var i=0;i<N;i++){ var im=new Image(); im.src=fr(i); pre.push(im); }
-  var idx=0; el.style.backgroundImage="url('assets/hero-web/frame01.webp?v=10')"; el.style.backgroundSize='cover'; el.style.backgroundPosition='center';
+  var idx=0; el.style.backgroundImage="url('assets/hero-web3/frame01.webp?v=11')"; el.style.backgroundSize='cover'; el.style.backgroundPosition='center';
   setInterval(function(){ idx=(idx+1)%N; el.style.backgroundImage='url('+fr(idx)+')'; },100);
 })();
 </script>
