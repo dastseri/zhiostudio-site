@@ -396,7 +396,9 @@ footer .fine{border-top:1px solid rgba(255,255,255,.14);margin-top:2.2rem;paddin
 
 <script>
 // smooth loader out
-window.addEventListener('load',function(){setTimeout(function(){document.getElementById('loader').classList.add('done')},450)});
+function hideLoader(){var l=document.getElementById('loader'); if(l) l.classList.add('done');}
+window.addEventListener('load',function(){setTimeout(hideLoader,450)});
+setTimeout(hideLoader,2500);
 
 // mobile menu
 var burger=document.getElementById('burger'),menu=document.getElementById('mobileMenu');
@@ -453,7 +455,7 @@ document.querySelectorAll('img[data-anim]').forEach(function(img){
   var N=100;
   function fr(i){ return 'assets/hero-web/frame'+String(i+1).padStart(2,'0')+'.webp?v=9'; }
   var pre=[]; for(var i=0;i<N;i++){ var im=new Image(); im.src=fr(i); pre.push(im); }
-  var idx=0; el.style.backgroundImage='url('+fr(0)+')';
+  var idx=0; el.style.backgroundImage="url('assets/hero-web/frame01.webp?v=9')"; el.style.backgroundSize='cover'; el.style.backgroundPosition='center';
   setInterval(function(){ idx=(idx+1)%N; el.style.backgroundImage='url('+fr(idx)+')'; },100);
 })();
 </script>
