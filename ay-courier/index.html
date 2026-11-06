@@ -60,8 +60,25 @@ header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdr
 @media(max-width:820px){.nav-links{display:none}.burger{display:flex}}
 
 /* hero */
-.hero{position:relative;overflow:hidden;background:linear-gradient(160deg,var(--bg-soft) 0%,#fff 55%)}
-.hero-blob{position:absolute;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(232,134,26,.20),rgba(232,134,26,0) 65%);right:-160px;top:-160px;pointer-events:none}
+.hero{position:relative;overflow:hidden;background:#0A1830;color:#fff}
+.hero-media{position:absolute;inset:0;z-index:0}
+.hero-media img,.hero-media video{width:100%;height:100%;object-fit:cover;display:block}
+.hero-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,22,48,.88) 0%,rgba(7,22,48,.62) 46%,rgba(7,22,48,.18) 78%,rgba(7,22,48,.05) 100%);z-index:1}
+.hero .wrap{position:relative;z-index:2}
+.hero h1{color:#fff}
+.hero .lede{color:#D7E2F2}
+.hero .eyebrow{background:rgba(232,134,26,.22);color:#FFC37A}
+.hero-note{color:#C9D7EE}
+.hero-note strong{color:#fff}
+.trust-row div{color:#B9C9E4}
+.trust-row strong{color:#fff}
+.hero .btn-ghost{border-color:rgba(255,255,255,.75);color:#fff}
+.hero .btn-ghost:hover{background:#fff;color:var(--navy)}
+.float-vid{position:absolute;right:4.5%;bottom:7%;width:min(330px,32vw);aspect-ratio:16/9;border-radius:14px;overflow:hidden;border:2px solid rgba(255,255,255,.5);box-shadow:0 24px 50px -18px rgba(0,0,0,.55);z-index:3;background:#000}
+.float-vid video{width:100%;height:100%;object-fit:cover;display:block}
+.float-vid figcaption{position:absolute;left:0;right:0;bottom:0;padding:.4rem .7rem;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:linear-gradient(transparent,rgba(7,22,48,.75))}
+@media(max-width:900px){.float-vid{display:none}}
+.hero-blob{display:none}
 .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center;padding:4.5rem 0 4rem;position:relative}
 @media(max-width:900px){.hero-grid{grid-template-columns:1fr;padding:3rem 0}}
 .eyebrow{display:inline-block;font-weight:700;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange-dark);background:rgba(232,134,26,.12);padding:.35rem .8rem;border-radius:99px;margin-bottom:1.1rem}
@@ -186,7 +203,15 @@ footer .fine{border-top:1px solid rgba(255,255,255,.14);margin-top:2.2rem;paddin
 <main>
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-blob" data-parallax></div>
+    <div class="hero-media" aria-hidden="true">
+      <img src="assets/hero-van.jpg" alt="" onerror="this.remove()">
+      <video autoplay muted loop playsinline preload="auto" poster="assets/hero-van.jpg" src="assets/route-van.mp4"></video>
+    </div>
+    <div class="hero-shade" aria-hidden="true"></div>
+    <figure class="float-vid" aria-label="Parcels loading themselves into the van — concept film">
+      <video autoplay muted loop playsinline preload="metadata" src="assets/hero-loading.mp4"></video>
+      <figcaption>Watch a load come together</figcaption>
+    </figure>
     <div class="wrap hero-grid">
       <div class="hero-copy reveal in">
         <span class="eyebrow">Scarborough · Toronto · GTA</span>
@@ -204,6 +229,7 @@ footer .fine{border-top:1px solid rgba(255,255,255,.14);margin-top:2.2rem;paddin
         </div>
       </div>
       <div class="phone-card reveal in">
+        <video autoplay muted loop playsinline preload="metadata" src="assets/doors-reveal.mp4" style="width:calc(100% + 3.6rem);margin:-1.8rem -1.8rem 1.1rem;height:150px;object-fit:cover;border-radius:14px 14px 0 0" aria-label="The van's doors open on a perfectly stacked load — concept film"></video>
         <h3>Book a delivery</h3>
         <a class="big-number" href="tel:+16479729534">(647) 972-9534</a>
         <p>One number for bookings, quotes and updates — on the website, on Google, everywhere. No more guessing which line reaches us.</p>
@@ -234,6 +260,9 @@ footer .fine{border-top:1px solid rgba(255,255,255,.14);margin-top:2.2rem;paddin
         <div class="route-chip chip-a">📍 Pickup — Scarborough<small>Booked by phone in 2 minutes</small></div>
         <div class="route-chip chip-b">🚐 On route — Don Valley Pkwy<small>Same-day, tracked by dispatch</small></div>
         <div class="route-chip chip-c">✅ Delivered — Downtown Toronto<small>Confirmation sent to the sender</small></div>
+        <div style="position:absolute;right:4%;bottom:8%;width:190px;border-radius:12px;overflow:hidden;border:2px solid rgba(255,255,255,.65);box-shadow:0 14px 30px -12px rgba(11,42,98,.45);background:#000">
+          <video autoplay muted loop playsinline preload="metadata" src="assets/route-van.mp4" style="width:100%;height:104px;object-fit:cover;display:block" aria-label="The van on its route — concept film"></video>
+        </div>
       </div>
     </div>
   </section>
