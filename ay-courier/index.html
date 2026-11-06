@@ -205,7 +205,7 @@ footer .fine{border-top:1px solid rgba(255,255,255,.14);margin-top:2.2rem;paddin
   <section class="hero">
     <div class="hero-media" aria-hidden="true">
       <img src="assets/hero-van.jpg?v=3" alt="" onerror="this.remove()">
-      <video autoplay muted loop playsinline preload="auto" disablepictureinpicture src="assets/route-van-web.mp4?v=4" onerror="this.remove()"></video>
+      <video autoplay muted loop playsinline preload="auto" disablepictureinpicture onerror="this.remove()"><source src="assets/route-van-web.mp4?v=5" type="video/mp4"></video>
     </div>
     <div class="hero-shade" aria-hidden="true"></div>
     <figure class="float-vid" aria-label="Parcels loading themselves into the van — concept film">
@@ -229,7 +229,7 @@ footer .fine{border-top:1px solid rgba(255,255,255,.14);margin-top:2.2rem;paddin
         </div>
       </div>
       <div class="phone-card reveal in">
-        <video autoplay muted loop playsinline preload="metadata" src="assets/doors-reveal-web.mp4?v=4" style="width:calc(100% + 3.6rem);margin:-1.8rem -1.8rem 1.1rem;height:150px;object-fit:cover;border-radius:14px 14px 0 0" aria-label="The van's doors open on a perfectly stacked load — concept film"></video>
+        <img src="assets/doors-poster.jpg?v=5" data-anim="assets/doors-mini.mp4?v=5" alt="The van's doors open on a perfectly stacked load — concept preview" style="width:calc(100% + 3.6rem);margin:-1.8rem -1.8rem 1.1rem;height:150px;object-fit:cover;border-radius:14px 14px 0 0">
         <h3>Book a delivery</h3>
         <a class="big-number" href="tel:+16479729534">(647) 972-9534</a>
         <p>One number for bookings, quotes and updates — on the website, on Google, everywhere. No more guessing which line reaches us.</p>
@@ -433,6 +433,17 @@ document.getElementById('quoteForm').addEventListener('submit',function(ev){
   ev.preventDefault();
   document.getElementById('formOk').classList.add('show');
   this.querySelector('button[type=submit]').textContent='Request received ✓';
+});
+</script>
+<script>
+document.querySelectorAll('img[data-anim]').forEach(function(img){
+  img.style.cursor='pointer'; img.title='Tap to play';
+  img.addEventListener('click',function(){
+    var v=document.createElement('video');
+    v.src=img.getAttribute('data-anim'); v.autoplay=true; v.muted=true; v.loop=true; v.playsInline=true;
+    v.setAttribute('style',img.getAttribute('style'));
+    img.replaceWith(v);
+  });
 });
 </script>
 </body>
