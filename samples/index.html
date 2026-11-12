@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sample Sites — ZhioStudio by NexAIS · Portfolio of Live Demos</title>
+<meta name="description" content="Every sample site and interactive demo built by ZhioStudio by NexAIS, in one place — restaurant concepts, brand stories and business websites, all live and clickable." />
+<link rel="icon" href="../assets/img/logo.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0e0e11; --panel:#17171d; --panel-2:#1e1e26;
+    --ink:#ece7dd; --muted:#a79d8a;
+    --gold:#c6a15b; --gold-soft:#e8cf9a; --line:rgba(198,161,91,.28);
+    --serif:"Playfair Display",Georgia,"Times New Roman",serif;
+    --sans:"Inter",-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img{max-width:100%;display:block}
+  a{color:var(--gold-soft);text-decoration:none}
+  a:hover{color:var(--gold)}
+  h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.15}
+  .eyebrow{color:var(--gold);text-transform:uppercase;letter-spacing:.28em;font-size:.72rem;font-weight:600;margin-bottom:.9rem}
+  .gold{color:var(--gold)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;border:1px solid var(--line);background:transparent;color:var(--ink);font:600 .95rem var(--sans);padding:.72rem 1.5rem;border-radius:999px;cursor:pointer;transition:all .22s ease;white-space:nowrap}
+  .btn:hover{border-color:var(--gold);color:var(--gold-soft);transform:translateY(-1px)}
+  .btn-gold{background:linear-gradient(135deg,var(--gold) 0%,#a97f3d 100%);border-color:transparent;color:#171205}
+  .btn-gold:hover{color:#171205;filter:brightness(1.1)}
+
+  /* ---------- Header (mirrors the main site) ---------- */
+  .site-header{position:fixed;inset:0 0 auto 0;z-index:60;display:flex;align-items:center;gap:2rem;padding:.8rem clamp(1rem,4vw,2.6rem);background:linear-gradient(180deg,rgba(10,10,13,.9),rgba(10,10,13,.6) 70%,transparent);backdrop-filter:blur(10px)}
+  .brand{display:flex;align-items:center;gap:.8rem;color:var(--ink)}
+  .brand img{width:46px;height:46px;border-radius:11px;border:1px solid var(--line);object-fit:cover}
+  .brand-text{display:flex;flex-direction:column;line-height:1.05}
+  .brand-text strong{font-family:var(--serif);font-size:1.3rem;letter-spacing:.02em}
+  .brand-text small{color:var(--gold);font-size:.72rem;letter-spacing:.24em;text-transform:uppercase}
+  .site-nav{display:flex;gap:1.9rem;margin-left:auto}
+  .site-nav a{color:var(--ink);font-size:.92rem;font-weight:500;opacity:.85}
+  .site-nav a:hover{opacity:1;color:var(--gold-soft)}
+  .site-nav a.current{opacity:1;color:var(--gold-soft);border-bottom:1px solid var(--gold);padding-bottom:2px}
+  .header-actions{display:flex;align-items:center;gap:.8rem}
+  .nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px}
+  .nav-toggle span{display:block;width:24px;height:2px;background:var(--ink)}
+  @media (max-width:900px){
+    .nav-toggle{display:flex}
+    .site-nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;padding:.6rem clamp(1rem,4vw,2.6rem) 1rem;background:#0a0a0d;border-bottom:1px solid var(--line);box-shadow:0 24px 40px rgba(0,0,0,.5)}
+    .site-nav.open{display:flex}
+    .site-nav a{padding:.55rem 0;border-bottom:1px solid rgba(198,161,91,.12)}
+    .site-nav a:last-child{border-bottom:0}
+    .header-actions .btn{display:none}
+  }
+
+  /* ---------- Page ---------- */
+  .wrap{max-width:1280px;margin:0 auto;padding:8.5rem clamp(1rem,4vw,2.6rem) 4.5rem}
+  .page-head{max-width:760px;margin-bottom:2.6rem}
+  .page-head h1{font-size:clamp(2rem,4.6vw,3.2rem);text-wrap:balance}
+  .page-head .lede{margin-top:1rem;color:#d9d2c2;font-size:clamp(1rem,1.5vw,1.1rem)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:1.4rem}
+  @media (max-width:480px){.grid{grid-template-columns:1fr}}
+
+  .card{display:flex;flex-direction:column;background:var(--panel);border:1px solid rgba(198,161,91,.16);border-radius:var(--radius);overflow:hidden;color:var(--ink);transition:transform .2s ease,border-color .2s ease}
+  a.card:hover{transform:translateY(-4px);border-color:var(--gold);color:var(--ink)}
+  .card .thumb{aspect-ratio:16/10;overflow:hidden;background:var(--panel-2)}
+  .card .thumb img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform .45s ease}
+  a.card:hover .thumb img{transform:scale(1.035)}
+  .card .body{padding:1.05rem 1.2rem 1.25rem;display:flex;flex-direction:column;gap:.35rem;flex:1}
+  .card .cat{color:var(--gold);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600}
+  .card .name{font-family:var(--serif);font-size:1.35rem;line-height:1.2}
+  .card .line{color:var(--muted);font-size:.94rem;flex:1}
+  .card .go{margin-top:.6rem;color:var(--gold-soft);font-weight:600;font-size:.92rem}
+  a.card:hover .go{color:var(--gold)}
+
+  /* Coming-soon card: blueprint treatment */
+  .card.soon{border-style:dashed;border-color:rgba(198,161,91,.4);background:
+    linear-gradient(rgba(198,161,91,.05),rgba(198,161,91,.05)),
+    repeating-linear-gradient(0deg,transparent,transparent 27px,rgba(198,161,91,.09) 28px),
+    repeating-linear-gradient(90deg,transparent,transparent 27px,rgba(198,161,91,.09) 28px),
+    var(--panel)}
+  .card.soon .thumb{display:flex;align-items:center;justify-content:center;background:transparent}
+  .soon-mark{font-family:var(--serif);font-size:clamp(2.4rem,6vw,3.4rem);color:rgba(232,207,154,.85);letter-spacing:.02em;text-align:center;padding:1rem}
+  .soon-mark small{display:block;font-family:var(--sans);font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-top:.6rem;font-weight:600}
+  .chip{display:inline-block;align-self:flex-start;border:1px solid var(--gold);color:var(--gold-soft);border-radius:999px;padding:.14rem .7rem;font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+
+  .cta{margin-top:3.2rem;border:1px solid var(--line);border-radius:var(--radius);padding:2rem clamp(1.2rem,3vw,2.2rem);background:linear-gradient(135deg,rgba(198,161,91,.1),rgba(198,161,91,.02));display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between}
+  .cta h2{font-size:clamp(1.4rem,2.6vw,1.9rem)}
+  .cta p{color:var(--muted);margin-top:.3rem}
+
+  /* ---------- Footer (mirrors the main site) ---------- */
+  .site-footer{border-top:1px solid rgba(198,161,91,.16);margin-top:2rem}
+  .footer-inner{max-width:1280px;margin:0 auto;padding:2.2rem clamp(1rem,4vw,2.6rem) 1rem;display:flex;flex-wrap:wrap;gap:1.6rem;align-items:center;justify-content:space-between}
+  .footer-brand{display:flex;gap:.9rem;align-items:center}
+  .footer-brand img{width:44px;height:44px;border-radius:11px;border:1px solid var(--line);object-fit:cover}
+  .footer-brand p{color:var(--muted);font-size:.88rem}
+  .footer-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+  .footer-links a{color:var(--ink);opacity:.85;font-size:.92rem}
+  .footer-links a:hover{opacity:1;color:var(--gold-soft)}
+  .copyright{max-width:1280px;margin:0 auto;padding:0 clamp(1rem,4vw,2.6rem) 2rem;color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body id="top">
+
+<header class="site-header">
+  <a class="brand" href="../" aria-label="ZhioStudio — home">
+    <img src="../assets/img/logo.jpg" alt="ZhioStudio logo" />
+    <span class="brand-text"><strong>ZhioStudio</strong><small>by NexAIS</small></span>
+  </a>
+  <nav class="site-nav" id="site-nav">
+    <a href="../#showroom">Work</a>
+    <a href="./" class="current" aria-current="page">Sample Sites</a>
+    <a href="../#services">Services</a>
+    <a href="../#about">About</a>
+    <a href="../#family">Family</a>
+    <a href="../#contact">Contact</a>
+  </nav>
+  <div class="header-actions">
+    <a class="btn btn-gold" href="../#contact">Start a project</a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="page-head">
+    <p class="eyebrow">Portfolio — Sample Sites</p>
+    <h1>Every sample, in <span class="gold">one place</span>.</h1>
+    <p class="lede">Concept sites and interactive demos built by ZhioStudio — each one live, each one clickable. This is the studio's shelf: new samples land here as they are built, so nothing gets lost.</p>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="cta">
+    <div>
+      <h2>Want a site like one of these?</h2>
+      <p>Tell us about your business — the studio replies within one business day.</p>
+    </div>
+    <a class="btn btn-gold" href="../#contact">Start a project</a>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="../assets/img/logo.jpg" alt="ZhioStudio logo" />
+      <div>
+        <strong>ZhioStudio <span class="gold">by NexAIS</span></strong>
+        <p>Cinematic content for local brands · Toronto, Canada</p>
+      </div>
+    </div>
+    <nav class="footer-links">
+      <a href="../">Home</a>
+      <a href="./">Sample Sites</a>
+      <a href="../#services">Services</a>
+      <a href="../#about">About</a>
+      <a href="../#contact">Contact</a>
+    </nav>
+  </div>
+  <p class="copyright">© 2026 ZhioStudio by NexAIS · Toronto, Canada</p>
+</footer>
+
+<script>
+/* ============================================================
+   SAMPLE SITES — to add a new sample, add ONE entry here and
+   drop its thumbnail (1200×750 JPG) into samples/img/.
+   Fields: id (thumbnail filename), name, cat (eyebrow label),
+   line (one-line description), url (live link), soon (optional)
+   ============================================================ */
+const SAMPLES = [
+  {
+    id: "anar", name: "Anar — Modern Persian Kitchen", cat: "Interactive restaurant demo",
+    line: "Dishes turn slowly on the plate, ingredients appear right on the food, the dish flies into your cart — and pickup checkout really works.",
+    url: "https://zhiostudio.nexais.ca/anar/"
+  },
+  {
+    id: "walkout", name: "Walk-Out Dining — Ember & Oak", cat: "Interactive restaurant demo",
+    line: "Scan the table QR, dine, then simply walk out — the tab closes itself. Or pay at the counter, the classic way.",
+    url: "https://zhiostudio.nexais.ca/walkout/"
+  },
+  {
+    id: "ember", name: "Ember — Wood-Fire Kitchen", cat: "Restaurant website",
+    line: "The menu in every layer: tilt a photo-real plate, pull it apart, take an ingredient out — then order exactly what you built, and book a table.",
+    url: "https://zhiostudio.nexais.ca/ember/"
+  },
+  {
+    id: "noir_essence", name: "NOIR ESSENCE", cat: "Brand concept site",
+    line: "A fictional luxury fragrance house you step into — the scent told as a scroll story: bergamot, night jasmine and rose, amber and oud.",
+    url: "https://zhiostudio.nexais.ca/noir-essence/"
+  },
+  {
+    id: "ay_courier", name: "AY Courier", cat: "Business website",
+    line: "A complete concept site for a GTA same-day courier — services, how it works, driver hiring and one number that is answered 24/7.",
+    url: "https://zhiostudio.nexais.ca/ay-courier/"
+  },
+  {
+    id: "alex_boylan", name: "Alex Boylan", cat: "Personal brand site",
+    line: "A sample site for a speaker and author — his story, speaking topics, the book, and a clear path to booking.",
+    url: "https://zhiostudio.nexais.ca/alex-boylan/"
+  },
+  {
+    id: "vaishali_joshi", name: "Vaishali Joshi — oraHuman", cat: "Personal brand site",
+    line: "A sample site for a mental-health speaker and wellness strategist — keynotes, the ORA℠ method and corporate programs.",
+    url: "https://zhiostudio.nexais.ca/vaishali-joshi/"
+  },
+  {
+    id: "tour3d", name: "2D Plan → 3D Tour", cat: "Real-estate experience", soon: true,
+    line: "Send a floor plan — walk through the home before it exists. The first sample is in production now.",
+    url: ""
+  }
+];
+
+const grid = document.getElementById("grid");
+for (const s of SAMPLES) {
+  if (s.soon) {
+    const el = document.createElement("div");
+    el.className = "card soon";
+    el.innerHTML = `
+      <div class="thumb"><div class="soon-mark">2D → 3D<small>Walkthrough tours</small></div></div>
+      <div class="body">
+        <span class="chip">In production</span>
+        <p class="cat" style="margin-top:.4rem">${s.cat}</p>
+        <h3 class="name">${s.name}</h3>
+        <p class="line">${s.line}</p>
+      </div>`;
+    grid.appendChild(el);
+  } else {
+    const el = document.createElement("a");
+    el.className = "card";
+    el.href = s.url;
+    el.innerHTML = `
+      <div class="thumb"><img src="img/${s.id}.jpg" alt="${s.name} — sample site screenshot" loading="lazy" /></div>
+      <div class="body">
+        <p class="cat">${s.cat}</p>
+        <h3 class="name">${s.name}</h3>
+        <p class="line">${s.line}</p>
+        <span class="go">View live demo →</span>
+      </div>`;
+    grid.appendChild(el);
+  }
+}
+
+const toggle = document.getElementById("nav-toggle");
+const nav = document.getElementById("site-nav");
+toggle.addEventListener("click", () => {
+  const open = nav.classList.toggle("open");
+  toggle.setAttribute("aria-expanded", open);
+});
+</script>
+</body>
+</html>
